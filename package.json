@@ -1,0 +1,14 @@
+{
+  "name": "billing-api",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Demo billing service for Permission Protocol sandbox onboarding.",
+  "scripts": {
+    "build": "tsc",
+    "lint": "echo 'lint ok'",
+    "test": "echo 'test ok'"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0"
+  }
+}
