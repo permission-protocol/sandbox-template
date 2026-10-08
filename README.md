@@ -1,42 +1,52 @@
-# Permission Protocol Sandbox Template
+# Permission Protocol test repository
 
-This is a public sandbox repository for trying Permission Protocol without putting a real production repo at risk.
+Sample content only. This repository has no deployment workflows and needs no
+production credentials. Create your own copy with GitHub's **Use this template**
+button; Permission Protocol never needs organization membership or a repository
+creation token.
 
-The repo looks like a small Node billing service: it has a billing API entrypoint in `src/api/billing.ts`, a database migration in `migrations/`, API docs in `docs/`, and GitHub workflows that make the pull request checks feel real. The point is to show the Permission Protocol activation loop quickly: AI can move fast, but consequential changes still need explicit human authority.
+## Choose visibility
 
-## What This Demonstrates
+A public copy contains only these samples. GitHub Free supports required checks
+on public repositories. Private copies require GitHub Pro, Team, or Enterprise
+Cloud for rulesets. Choose explicitly; Permission Protocol never changes visibility.
+[GitHub plan requirements](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets).
 
-Permission Protocol reads `.pp-policy.yml` and applies the required GitHub check:
+## Try a real hold
 
-- `docs/**`, markdown files, and `src/lib/utils.ts` are safe paths that auto-clear when tests pass.
-- `.github/workflows/**`, `migrations/**`, and `src/api/billing.ts` are protected paths that require a human signer.
-- blocked patterns like unsafe migrations or hardcoded secrets are denied until the diff is fixed.
+1. Return to your Permission Protocol workspace's Overview or Protection page.
+2. Install the GitHub App using **Only select repositories**, selecting this copy.
+   Organization owners may need to approve access. Signing into PP, installing
+   the App, selecting a repository, and becoming an eligible signer are separate steps.
+3. Import the App-pinned required-check ruleset supplied by Protection for your
+   default branch. Template creation and installation do not create protections.
+   Have PP read GitHub to verify the configuration.
+4. Choose **Create my first test PR**. The harmless change adds
+   `.github/permission-protocol-onboarding.md` on a disposable branch. The example
+   `.permission-protocol.yml` requires a human signature for that path.
+5. Observe the pending required check before signing. Review the exact commit and
+   policy reason in PP, sign with your eligible account and passkey, and inspect
+   the receipt. Check GitHub again to verify the same commit's result.
+6. **Close the test PR without merging.** Do not enable auto-merge. A receipt
+   records a decision; it does not prove a merge or deployment occurred.
 
-The required check appears in GitHub as **Permission Protocol**. The API status context is `permission-protocol/approval`.
+To create the PR manually, add that Markdown file with this one line on a **new
+branch**, then open a non-draft PR against your default branch:
 
-## Demo Pull Requests
+```text
+Permission Protocol onboarding check. Close this pull request after verification.
+```
 
-Sandbox onboarding creates two AI-authored PRs from `pp-demo-bot`:
+Return to Protection and check the PR. The normal webhook, policy, signing,
+receipt, and App status paths process it.
 
-- `docs: clarify API auth flow` touches `docs/api.md` only, so it auto-clears.
-- `feat: add staging deploy trigger` touches `.github/workflows/permission-protocol.yml` and `src/api/billing.ts`, so it is held for signing.
+## Continue with your application
 
-After signing the held PR, you get your first authority receipt and the GitHub check turns green. That is the "speed with brakes" moment: routine AI changes keep moving, but changes to deploy, billing, and migrations require a named human decision.
+Choose **Protect a real repository** in the same PP workspace. Add that repository
+through GitHub, review its own policy and signers, verify its required check, and
+run a fresh disposable approval flow. This test receipt authorizes only its exact
+repository and commit. It never establishes protection for your application.
 
-## Files To Notice
-
-- `.pp-policy.yml` is the starter policy you edit as your rules mature.
-- `.github/workflows/permission-protocol.yml` installs the Permission Protocol gate.
-- `src/api/billing.ts` is intentionally protected because billing logic is consequential.
-- `migrations/` is protected because schema changes need rollback discipline.
-- `docs/api.md` is intentionally safe so documentation-only PRs can move quickly.
-
-## Try It
-
-Use this repository as a template, connect it from the Permission Protocol dashboard, and follow the sandbox flow. Once the aha lands, graduate to a real repository from the dashboard and keep the same policy shape.
-
-## Why This Exists
-
-AI-generated pull requests should not force teams to choose between speed and control. Permission Protocol gives teams a visible approval layer for consequential agent work, with receipts that prove who authorized what.
-
-Learn more at [permissionprotocol.com](https://permissionprotocol.com).
+Keep this copy for experiments, or delete it yourself through GitHub settings when
+you no longer need it. Repository deletion is a separate destructive owner action;
+PP does not delete customer repositories.

@@ -1,0 +1,9 @@
+# Sample-only onboarding policy. Customer rules add holds; they never override denials.
+version: 1
+protected_paths:
+  - id: onboarding-test
+    match: .github/permission-protocol-onboarding.md
+    rationale: Review this harmless test change to experience a held PR and signed receipt.
+  - id: sample-billing
+    match: src/api/billing.ts
+    rationale: A human reviews changes to the sample billing behavior.
